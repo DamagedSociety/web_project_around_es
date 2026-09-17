@@ -14,6 +14,9 @@ Hasta esta etapa del desarrollo, me he encargado de implementar las siguientes f
 - **Control de ventanas emergentes (modales):** Desarrollo de la lógica modular para la apertura y cierre de ventanas modales mediante la manipulación dinámica de clases en el DOM.
 - **Sincronización y edición del perfil:** Captura de la información actual del usuario en la página (`textContent`) para precargar automáticamente los campos del formulario (`value`) al abrir el modal de edición.
 - **Procesamiento de formularios:** Manejo del evento de envío (`submit`) para prevenir el comportamiento por defecto del navegador, actualizar en tiempo real los datos del perfil en el DOM y cerrar la ventana emergente tras guardar los cambios.
+- **Renderizado dinámico de tarjetas:** Creación de tarjetas en el DOM a partir del arreglo de datos iniciales mediante el uso del elemento `<template>` e instanciación con datos por defecto ante la falta de propiedades.
+- **Creación de nuevas tarjetas:** Implementación de la ventana emergente "Agregar una tarjeta" con su respectivo controlador de envío (`handleCardFormSubmit`) para insertar nuevos elementos al inicio del contenedor.
+- **Gestión de interacción en tarjetas:** Implementación de manejadores de eventos para alternar el estado del botón "Me gusta", eliminar tarjetas del DOM y abrir la vista ampliada de imágenes en un modal dedicado.
 
 ## Tecnologías utilizadas
 
@@ -43,8 +46,4 @@ Hasta esta etapa del desarrollo, me he encargado de implementar las siguientes f
 
 ## Planes de mejora
 
-- Renderizar dinámicamente en el DOM las tarjetas de fotos a partir del arreglo de datos iniciales.
-
-- Desarrollar la lógica para la ventanas emergente de "Agregar tarjeta".
-
-- Agregar funcionalidad a los botones de eliminación de tarjetas y el botón de "Me gusta".
+- Integración con servidor (Backend): Conectar la aplicación con un servidor backend para guardar y mantener la persistencia de las tarjetas creadas, los "me gusta" y la información del perfil.

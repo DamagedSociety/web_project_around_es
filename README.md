@@ -47,3 +47,5 @@ Hasta esta etapa del desarrollo, me he encargado de implementar las siguientes f
 ## Planes de mejora
 
 - Integración con servidor (Backend): Conectar la aplicación con un servidor backend para guardar y mantener la persistencia de las tarjetas creadas, los "me gusta" y la información del perfil.
+- Autenticación de usuarios: Implementar la lógica para permitir iniciar sesión y cerrar sesión de manera segura.
+- Actualización de avatar: Agregar la funcionalidad para cambiar la foto de perfil del usuario.

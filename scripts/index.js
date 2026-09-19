@@ -60,9 +60,13 @@ function closeModal(modal) {
   modal.classList.remove("popup_is-opened");
 }
 
+function handleLikeClick(evt) {
+  evt.target.classList.toggle("card__like-button_is-active");
+}
+
 function getCardElement(
   name = "Sin título",
-  link = "../images/placeholder.jpg",
+  link = "./images/placeholder.jpg",
 ) {
   const cardElement = cardTemplate.cloneNode(true);
 
@@ -75,9 +79,8 @@ function getCardElement(
   nameElement.textContent = name;
 
   const cardLikeBtn = cardElement.querySelector(".card__like-button");
-  cardLikeBtn.addEventListener("click", (evt) =>
-    evt.target.classList.toggle("card__like-button_is-active"),
-  );
+  cardLikeBtn.addEventListener("click", handleLikeClick);
+
   const removeCardBtn = cardElement.querySelector(".card__delete-button");
   removeCardBtn.addEventListener("click", () => cardElement.remove());
 

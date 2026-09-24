@@ -11,8 +11,9 @@ Around the US es una página interactiva concebida para que los usuarios puedan 
 Hasta esta etapa del desarrollo, me he encargado de implementar las siguientes funcionalidades principales:
 
 - **Estructuración e integración de datos:** Creación y recorrido de arreglos de objetos (`initialCards`) para gestionar la información estructurada de las tarjetas (nombres y enlaces de imágenes) de forma modular y limpia.
-- **Control de ventanas emergentes (modales):** Desarrollo de la lógica modular para la apertura y cierre de ventanas modales mediante la manipulación dinámica de clases en el DOM.
+- **Control de ventanas emergentes (modales) y UX:** Desarrollo de la lógica modular para la apertura y cierre de ventanas modales mediante la manipulación dinámica de clases en el DOM. Cierre mejorado mediante clic en el overlay (fondo semitransparente) comparando `event.target === event.currentTarget`, y cierre mediante la tecla `Escape` con escuchadores globales gestionados dinámicamente.
 - **Sincronización y edición del perfil:** Captura de la información actual del usuario en la página (`textContent`) para precargar automáticamente los campos del formulario (`value`) al abrir el modal de edición.
+- **Validación de formularios en tiempo real (`validate.js`):** Implementación de la validación modular en un archivo independiente (`validate.js`). Control de mensajes de error personalizados en el DOM basados en las reglas nativas del navegador (`required`, `minlength`, `maxlength`, `type="url"`) y gestión del estado del botón de envío (`submit`), activándolo solo cuando todos los campos son válidos.
 - **Procesamiento de formularios:** Manejo del evento de envío (`submit`) para prevenir el comportamiento por defecto del navegador, actualizar en tiempo real los datos del perfil en el DOM y cerrar la ventana emergente tras guardar los cambios.
 - **Renderizado dinámico de tarjetas:** Creación de tarjetas en el DOM a partir del arreglo de datos iniciales mediante el uso del elemento `<template>` e instanciación con datos por defecto ante la falta de propiedades.
 - **Creación de nuevas tarjetas:** Implementación de la ventana emergente "Agregar una tarjeta" con su respectivo controlador de envío (`handleCardFormSubmit`) para insertar nuevos elementos al inicio del contenedor.
@@ -22,10 +23,11 @@ Hasta esta etapa del desarrollo, me he encargado de implementar las siguientes f
 
 **JavaScript (ES6+):**
 
-- Manipulación del DOM (`querySelector`, control de clases y modificación de contenido)
-- Gestión de eventos (`addEventListener`, objeto `event`, `preventDefault`)
-- Estructuras de datos en JS (Objetos, Arreglos y métodos de iteración como `forEach`)
-- Manejo de formularios y propiedades de campos (`value`, `textContent`)
+- **Manipulación avanzada del DOM:** Selección de elementos (`querySelector`, `querySelectorAll`), clonación de elementos dinámicos mediante `<template>` (`cloneNode`), inserción de nodos (`prepend`) y modificación de clases CSS (`classList.add`, `classList.remove`, `classList.toggle`).
+- **Arquitectura de módulos en ES6:** Separación de la lógica en múltiples archivos mediante directivas `import` y `export` (`validate.js` e `index.js`).
+- **Gestión de eventos y propagación:** Asignación de escuchadores (`addEventListener`), manejo del objeto de evento (`event.target`, `event.currentTarget`, `event.key`), prevención de recargas de página (`event.preventDefault`) y gestión de eventos globales en `document`.
+- **API de validación de formularios en JS:** Control de validez nativa (`validity.valid`, `validationMessage`), recorrido de inputs con métodos de arreglos (`Array.from`, `some`, `forEach`) y alteración del estado de botones de envío (`disabled`).
+- **Estructuras de datos:** Objetos, arreglos e iteración modular para el renderizado dinámico de contenido.
 
 **Git y GitHub (Control de versiones)**
 

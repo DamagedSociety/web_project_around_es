@@ -1,3 +1,4 @@
+import { enableValidation } from "./validate.js";
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -24,7 +25,7 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
   },
 ];
-
+const popups = document.querySelectorAll(".popup");
 const editProfileBtn = document.querySelector(".profile__edit-button");
 const editProfileModal = document.querySelector("#edit-popup");
 const editProfileCloseBtn = editProfileModal.querySelector(".popup__close");
@@ -52,12 +53,30 @@ const imgModalCloseBtn = imgModal.querySelector(".popup__close");
 const imgModalImg = imgModal.querySelector(".popup__image");
 const imgModalCaption = imgModal.querySelector(".popup__caption");
 
+function handleClosePopup(event) {
+  if (event.target === event.currentTarget) {
+    closeModal(event.currentTarget);
+  }
+}
+
+function handleEscClose(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_is-opened");
+
+    if (openedPopup) {
+      closeModal(openedPopup);
+    }
+  }
+}
+
 function openModal(modal) {
   modal.classList.add("popup_is-opened");
+  document.addEventListener("keydown", handleEscClose);
 }
 
 function closeModal(modal) {
   modal.classList.remove("popup_is-opened");
+  document.removeEventListener("keydown", handleEscClose);
 }
 
 function handleLikeClick(evt) {
@@ -123,6 +142,12 @@ function handleProfileFormSubmit(evt) {
   profileDescription.textContent = editProfileTypeDescription.value;
   closeModal(editProfileModal);
 }
+
+enableValidation();
+
+popups.forEach((popup) => {
+  popup.addEventListener("click", handleClosePopup);
+});
 
 newCardBtn.addEventListener("click", () => openModal(newCardModal));
 

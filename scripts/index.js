@@ -1,4 +1,4 @@
-import { enableValidation } from "./validate.js";
+import { enableValidation, resetValidation } from "./validate.js";
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -77,6 +77,10 @@ function openModal(modal) {
 function closeModal(modal) {
   modal.classList.remove("popup_is-opened");
   document.removeEventListener("keydown", handleEscClose);
+  const formElement = modal.querySelector(".popup__form");
+  if (formElement) {
+    resetValidation(formElement);
+  }
 }
 
 function handleLikeClick(evt) {

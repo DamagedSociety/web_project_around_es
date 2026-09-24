@@ -52,4 +52,11 @@ function enableValidation() {
   });
 }
 
-export { enableValidation };
+function resetValidation(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
+  const submitButton = formElement.querySelector(".popup__button");
+  inputList.forEach((input) => hideInputError(formElement, input));
+  submitButton.disabled = true;
+}
+
+export { enableValidation, resetValidation };

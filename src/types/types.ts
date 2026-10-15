@@ -12,7 +12,7 @@ export interface FormValidatorConfig {
 }
 
 export interface FormValues {
-  [key: string]: string; // Clave dinámica: permite cualquier atributo 'name' del input
+  [key: string]: string;
 }
 
 export type RendererFunction<T> = (item: T) => void;

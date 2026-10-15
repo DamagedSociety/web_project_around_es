@@ -2,7 +2,7 @@
 
 ## Sobre mí
 
-¡Hola! Soy Julián López, desarrollador junior, en proceso de formación en [TripleTen](https://tripleten.com/trainer/web/lesson/115c8025-b948-49f0-91ac-c82e0ddf4a08/), donde estoy adquiriendo habilidades en tecnologías clave como HTML, CSS, Javascript, TypeScript, Git, React y Figma. Mi objetivo es dominar estas herramientas para convertirme en un desarrollador Full Stack aportando valor y soluciones en desarrollo de proyectos WEB.
+¡Hola! Soy Julián López, desarrollador junior, en proceso de formación en TripleTen, donde estoy adquiriendo habilidades en tecnologías clave como HTML, CSS, Javascript, TypeScript, Git, React y Figma. Mi objetivo es dominar estas herramientas para convertirme en un desarrollador Full Stack aportando valor y soluciones en desarrollo de proyectos WEB.
 
 ## Descripción del proyecto
 

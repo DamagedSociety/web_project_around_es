@@ -39,7 +39,7 @@ export const cardTemplate = "#card-template";
 export const editProfileModal = "#edit-popup";
 export const newCardModal = "#new-card-popup";
 export const imgModal = "#image-popup";
-export const userInfo = {
+export const userInfoConfig = {
   userNameSelector: ".profile__title",
   userDescriptionSelector: ".profile__description",
 };

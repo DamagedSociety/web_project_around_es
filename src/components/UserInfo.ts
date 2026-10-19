@@ -1,5 +1,4 @@
-import { type UserInfoSelectors } from "../types/types";
-import { type UserData } from "../types/types";
+import type { UserInfoSelectors, UserData } from "../types/types.js";
 
 export class UserInfo {
   private userNameElement: Element;

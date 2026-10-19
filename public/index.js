@@ -1,10 +1,10 @@
-import { initialCards, cardContainer, cardTemplate, editProfileModal, newCardModal, imgModal, userInfo, defaultFormConfig, } from "./utils/constants.js";
+import { initialCards, cardContainer, cardTemplate, editProfileModal, newCardModal, imgModal, userInfoConfig, defaultFormConfig, } from "./utils/constants.js";
 import { Card } from "./components/Card.js";
 import { Section } from "./components/Section.js";
-import {} from "./types/types.js";
 import { PopupWithImage } from "./components/PopupWithImage.js";
 import { PopupWithForm } from "./components/PopupWithForm.js";
 import { FormValidator } from "./components/FormValidator.js";
+import { UserInfo } from "./components/UserInfo.js";
 const imagePopup = new PopupWithImage(imgModal);
 imagePopup.setEventListeners();
 const handleCardClick = (data) => {
@@ -21,23 +21,25 @@ const cardList = new Section({
     },
 }, cardContainer);
 cardList.renderItems();
-const profileTitle = document.querySelector(userInfo.userNameSelector);
-const profileDescription = document.querySelector(userInfo.userDescriptionSelector);
+const userInfo = new UserInfo({
+    userNameSelector: userInfoConfig.userNameSelector,
+    userDescriptionSelector: userInfoConfig.userDescriptionSelector,
+});
 const openEditFormButton = document.querySelector(".profile__edit-button");
 const openCardFormButton = document.querySelector(".profile__add-button");
 const profileForm = document.querySelector("#edit-profile-form");
 const cardForm = document.querySelector("#new-card-form");
 const editProfilePopup = new PopupWithForm(editProfileModal, (formData) => {
-    if (profileTitle && profileDescription) {
-        profileTitle.textContent = formData.name;
-        profileDescription.textContent = formData.about;
-    }
+    userInfo.setUser({
+        name: formData.name,
+        about: formData.about,
+    });
     editProfilePopup.close();
 });
 editProfilePopup.setEventListeners();
 const addCardPopup = new PopupWithForm(newCardModal, (formData) => {
     const newCardElement = createCard({
-        name: formData.name,
+        name: formData.title,
         link: formData.link,
     });
     cardList.addItem(newCardElement);

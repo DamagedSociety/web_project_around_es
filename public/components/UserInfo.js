@@ -1,5 +1,3 @@
-import {} from "../types/types";
-import {} from "../types/types";
 export class UserInfo {
     constructor({ userNameSelector, userDescriptionSelector, }) {
         this.userNameElement = document.querySelector(userNameSelector);

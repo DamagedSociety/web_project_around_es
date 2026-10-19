@@ -31,7 +31,14 @@ export class PopupWithForm extends Popup {
       this.handleFormSubmit(this.getInputValues());
     });
   }
-
+  open(data?: FormValues): void {
+    if (data) {
+      this.inputList.forEach((input) => {
+        input.value = data[input.name];
+      });
+    }
+    super.open();
+  }
   close(): void {
     super.close();
     this.formElement.reset();

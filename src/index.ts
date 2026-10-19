@@ -86,7 +86,11 @@ cardFormValidator.enableValidation();
 if (openEditFormButton) {
   openEditFormButton.addEventListener("click", () => {
     profileFormValidator.resetValidation();
-    editProfilePopup.open();
+    const data = userInfo.getUserInfo();
+    editProfilePopup.open({
+      name: data.name,
+      about: data.about,
+    });
   });
 }
 

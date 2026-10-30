@@ -1,21 +1,31 @@
-import { type CardData } from "../types/types.js";
+import { type ApiCard } from "../types/types.js";
 
 export class Card {
   private name: string;
   private link: string;
   private selector: string;
   private element!: HTMLElement;
-  private handleCardClick: (cardData: CardData) => void;
+  private handleCardClick: (cardData: { name: string; link: string }) => void;
+  private id: string;
+  private isLiked: boolean;
+  private handleLikeClick: (cardId: string, isLiked: boolean) => void;
+  private handleTrashClick: (cardId: string) => void;
 
   constructor(
-    { name, link }: CardData,
+    { name, link, _id, isLiked }: ApiCard,
     selector: string,
-    handleCardClick: (cardData: CardData) => void,
+    handleCardClick: (cardData: { name: string; link: string }) => void,
+    handleLikeClick: (cardId: string, isLiked: boolean) => void,
+    handleTrashClick: (cardId: string) => void,
   ) {
     this.name = name;
     this.link = link;
     this.selector = selector;
     this.handleCardClick = handleCardClick;
+    this.id = _id;
+    this.isLiked = isLiked;
+    this.handleLikeClick = handleLikeClick;
+    this.handleTrashClick = handleTrashClick;
   }
 
   private getTemplate(): HTMLElement {
@@ -29,27 +39,36 @@ export class Card {
     return cardElement;
   }
 
-  private handleLikeClick = (cardLikeBtn: HTMLElement): void => {
-    cardLikeBtn.classList.toggle("card__like-button_is-active");
-  };
+  public setLikeState(isLiked: boolean): void {
+    this.isLiked = isLiked;
+    const cardLikeBtn = this.element.querySelector(
+      ".card__like-button",
+    ) as HTMLElement;
 
-  private handleRemoveClick = (): void => {
+    if (this.isLiked) {
+      cardLikeBtn.classList.add("card__like-button_is-active");
+    } else {
+      cardLikeBtn.classList.remove("card__like-button_is-active");
+    }
+  }
+
+  public removeCard(): void {
     this.element.remove();
-  };
+  }
 
   private setEventListeners(): void {
     const cardLikeBtn = this.element.querySelector(
       ".card__like-button",
     ) as HTMLElement;
     cardLikeBtn.addEventListener("click", () => {
-      this.handleLikeClick(cardLikeBtn);
+      this.handleLikeClick(this.id, this.isLiked);
     });
 
     const removeCardBtn = this.element.querySelector(
       ".card__delete-button",
     ) as HTMLElement;
     removeCardBtn.addEventListener("click", () => {
-      this.handleRemoveClick();
+      this.handleTrashClick(this.id);
     });
 
     const imageElement = this.element.querySelector(
@@ -75,6 +94,13 @@ export class Card {
       ".card__title",
     ) as HTMLElement;
     nameElement.textContent = this.name;
+
+    const cardLikeBtn = this.element.querySelector(
+      ".card__like-button",
+    ) as HTMLElement;
+    if (this.isLiked) {
+      cardLikeBtn.classList.add("card__like-button_is-active");
+    }
 
     return this.element;
   }

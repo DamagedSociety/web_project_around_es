@@ -1,30 +1,38 @@
-import type { UserInfoSelectors, UserData } from "../types/types.js";
+import type { UserInfoSelectors, ApiUserInfo } from "../types/types.js";
 
 export class UserInfo {
   private userNameElement: Element;
   private userDescriptionElement: Element;
+  private userAvatarElement: HTMLImageElement;
 
-  constructor({
-    userNameSelector,
-    userDescriptionSelector,
-  }: UserInfoSelectors) {
+  constructor(selectors: UserInfoSelectors & { userAvatarSelector: string }) {
     this.userNameElement = document.querySelector(
-      userNameSelector,
+      selectors.userNameSelector,
     ) as HTMLElement;
     this.userDescriptionElement = document.querySelector(
-      userDescriptionSelector,
+      selectors.userDescriptionSelector,
     ) as HTMLElement;
+    this.userAvatarElement = document.querySelector(
+      selectors.userAvatarSelector,
+    ) as HTMLImageElement;
   }
 
-  getUserInfo(): UserData {
+  getUserInfo(): { name: string; about: string } {
     return {
       name: this.userNameElement.textContent || "",
       about: this.userDescriptionElement.textContent || "",
     };
   }
 
-  setUser({ name, about }: UserData): void {
-    this.userNameElement.textContent = name;
-    this.userDescriptionElement.textContent = about;
+  setUser(data: Partial<ApiUserInfo>): void {
+    if (data.name && this.userNameElement) {
+      this.userNameElement.textContent = data.name;
+    }
+    if (data.about && this.userDescriptionElement) {
+      this.userDescriptionElement.textContent = data.about;
+    }
+    if (data.avatar && this.userAvatarElement) {
+      this.userAvatarElement.src = data.avatar;
+    }
   }
 }

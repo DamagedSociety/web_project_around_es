@@ -1,16 +1,14 @@
 import {} from "../types/types.js";
 export class Card {
-    constructor({ name, link }, selector, handleCardClick) {
-        this.handleLikeClick = (cardLikeBtn) => {
-            cardLikeBtn.classList.toggle("card__like-button_is-active");
-        };
-        this.handleRemoveClick = () => {
-            this.element.remove();
-        };
+    constructor({ name, link, _id, isLiked }, selector, handleCardClick, handleLikeClick, handleTrashClick) {
         this.name = name;
         this.link = link;
         this.selector = selector;
         this.handleCardClick = handleCardClick;
+        this.id = _id;
+        this.isLiked = isLiked;
+        this.handleLikeClick = handleLikeClick;
+        this.handleTrashClick = handleTrashClick;
     }
     getTemplate() {
         const cardTemplate = document.querySelector(this.selector);
@@ -19,14 +17,27 @@ export class Card {
             .cloneNode(true);
         return cardElement;
     }
+    setLikeState(isLiked) {
+        this.isLiked = isLiked;
+        const cardLikeBtn = this.element.querySelector(".card__like-button");
+        if (this.isLiked) {
+            cardLikeBtn.classList.add("card__like-button_is-active");
+        }
+        else {
+            cardLikeBtn.classList.remove("card__like-button_is-active");
+        }
+    }
+    removeCard() {
+        this.element.remove();
+    }
     setEventListeners() {
         const cardLikeBtn = this.element.querySelector(".card__like-button");
         cardLikeBtn.addEventListener("click", () => {
-            this.handleLikeClick(cardLikeBtn);
+            this.handleLikeClick(this.id, this.isLiked);
         });
         const removeCardBtn = this.element.querySelector(".card__delete-button");
         removeCardBtn.addEventListener("click", () => {
-            this.handleRemoveClick();
+            this.handleTrashClick(this.id);
         });
         const imageElement = this.element.querySelector(".card__image");
         imageElement.addEventListener("click", () => {
@@ -41,6 +52,10 @@ export class Card {
         imageElement.alt = this.name;
         const nameElement = this.element.querySelector(".card__title");
         nameElement.textContent = this.name;
+        const cardLikeBtn = this.element.querySelector(".card__like-button");
+        if (this.isLiked) {
+            cardLikeBtn.classList.add("card__like-button_is-active");
+        }
         return this.element;
     }
 }

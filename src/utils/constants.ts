@@ -1,4 +1,4 @@
-import type { CardData, FormValidatorConfig } from "../types/types.js";
+import type { FormValidatorConfig, UserInfoSelectors } from "../types/types.js";
 export const defaultFormConfig: FormValidatorConfig = {
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
@@ -7,39 +7,14 @@ export const defaultFormConfig: FormValidatorConfig = {
   errorClass: "popup__input-error_active",
 };
 
-export const initialCards: CardData[] = [
-  {
-    name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-  },
-  {
-    name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
-  },
-  {
-    name: "Parque Nacional de la Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
-  },
-];
-
 export const cardContainer = ".cards__list";
 export const cardTemplate = "#card-template";
 export const editProfileModal = "#edit-popup";
 export const newCardModal = "#new-card-popup";
 export const imgModal = "#image-popup";
-export const userInfoConfig = {
+export const confirmationModal = "#confirm-popup";
+export const userInfoConfig: UserInfoSelectors = {
   userNameSelector: ".profile__title",
   userDescriptionSelector: ".profile__description",
+  userAvatarSelector: ".profile__image",
 };
